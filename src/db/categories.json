@@ -1,0 +1,51 @@
+[
+  {
+      "createData": "Tue Jul 09 2019 10:11:58 GMT+0600 (Kyrgyzstan Time)",
+      "_id": "5d24140f15045e21563b739b",
+      "user": "5d24140f15045e21563b738f",
+      "name": "hotel",
+      "__v": 0
+  },
+  {
+      "createData": "Tue Jul 09 2019 10:11:58 GMT+0600 (Kyrgyzstan Time)",
+      "_id": "5d24140f15045e21563b739c",
+      "user": "5d24140f15045e21563b738f",
+      "name": "guest house",
+      "__v": 0
+  },
+  {
+      "createData": "Tue Jul 09 2019 10:11:58 GMT+0600 (Kyrgyzstan Time)",
+      "_id": "5d24140f15045e21563b739d",
+      "user": "5d24140f15045e21563b738f",
+      "name": "night club",
+      "__v": 0
+  },
+  {
+      "createData": "Tue Jul 09 2019 10:11:58 GMT+0600 (Kyrgyzstan Time)",
+      "_id": "5d24140f15045e21563b739e",
+      "user": "5d24140f15045e21563b738f",
+      "name": "cafe",
+      "__v": 0
+  },
+  {
+      "createData": "Tue Jul 09 2019 10:11:58 GMT+0600 (Kyrgyzstan Time)",
+      "_id": "5d24140f15045e21563b739f",
+      "user": "5d24140f15045e21563b738f",
+      "name": "restaurant",
+      "__v": 0
+  },
+  {
+      "createData": "Tue Jul 09 2019 10:11:58 GMT+0600 (Kyrgyzstan Time)",
+      "_id": "5d24140f15045e21563b73a0",
+      "user": "5d24140f15045e21563b738f",
+      "name": "hostel",
+      "__v": 0
+  },
+  {
+      "createData": "Tue Jul 09 2019 10:11:58 GMT+0600 (Kyrgyzstan Time)",
+      "_id": "5d24140f15045e21563b73a1",
+      "user": "5d24140f15045e21563b738f",
+      "name": "chaihana",
+      "__v": 0
+  }
+]

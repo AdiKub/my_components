@@ -6,7 +6,7 @@ import PagesTopTitle from '../components/PagesTopTitle';
 import ArticlesContainer from '../containers/Articles';
 import DetailPostTopContainer from '../containers/DetailPostTop'
 import "../assets/styles/main.scss";
-import "../components/Header/header.scss";
+
 
 
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,20 +7,16 @@ import ArticleAsideContainer from '../../containers/ArticleAside'
 import './articlesWrapper.scss';
 
 const ArticlesWrapper = (props) => {
-  const { getArticlesByPageStart, articlePaginate } = props;
+  const {  articlePaginate } = props;
   const firstPage = 1;
   const [Initialpage, setPageClicked] = useState(firstPage);
 
-  useEffect(() => {
-    getArticlesByPageStart(Initialpage)
-      window.scrollTo(0, 0)
-  }, [Initialpage, getArticlesByPageStart]);
   return (
     <div className='articles-wrapper'>
       <div className='container'>
         <div className='articles-wrapper-main-content'>
           <div className='articles-wrapper-list'>
-            {articlePaginate.map(articlePaginate => (
+            {articlePaginate.slice(0, 3).map(articlePaginate => (
               <Article articlePaginate={articlePaginate}
                 key={articlePaginate._id}
               />

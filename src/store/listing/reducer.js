@@ -1,5 +1,5 @@
-import { initialState } from './selectors';
-import * as actionTypes from './actionTypes';
+import { initialState } from './selectors.js';
+import * as actionTypes from './actionTypes.js';
 
 export default (state = initialState, action) => {
     switch (action.type) {

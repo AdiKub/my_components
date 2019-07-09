@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 import ListingForm from '../../components/ListingForm';
-import { createListingStart } from '../../store/actions';
+import { createListingStart } from '../../store/listing/actions';
 import { createValidator, email, required } from '../../services/validations';
+
+import categories  from '../../db/categories.json';
+import cities  from '../../db/cities.json';
 
 
 const validate = createValidator({
@@ -19,10 +22,10 @@ const validate = createValidator({
    maxPrice: [required],
    website: [required],
 });
-
+// was set default 
 const mapStateToProps = (store) => ({
-    categories: store.main.categories,
-    cities: store.main.cities,
+    categories: categories,
+    cities: cities,
 })
 const formConfig = {
     form: 'ListingForm',

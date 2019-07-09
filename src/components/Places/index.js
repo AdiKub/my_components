@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import React from 'react'
 import PlaceCard from '../PlaceCard';
 import SectionTitle from '../SectionTitle';
@@ -6,12 +5,9 @@ import './places.scss'
 
 const Places = props => {
 
-  const { places, getPlacesStart } = props;
+  const { places } = props;
   
-  useEffect(() => {
-    getPlacesStart('isOpen=true&_limit=8')
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getPlacesStart]);
+ 
 
     return (
     <section className='section-places'>
@@ -53,7 +49,7 @@ const Places = props => {
         </div>
         <div
           className='place-cards-wrapper'>
-          {places.places.slice(0, 8).map(placeObj => {
+          {places.slice(0, 8).map(placeObj => {
             return (
               <PlaceCard
                 key={placeObj._id}

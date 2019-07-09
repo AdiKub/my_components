@@ -2,8 +2,8 @@ import {
   take, put, call, fork,
 } from 'redux-saga/effects';
 import api from '../../services/api';
-import * as actions from './actions';
-import * as actionTypes from './actionTypes';
+import * as actions from './actions.js';
+import * as actionTypes from './actionTypes.js';
 
 
 export function* createListingRequest(requestParams) {

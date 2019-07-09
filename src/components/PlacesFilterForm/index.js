@@ -1,12 +1,10 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState } from 'react';
 import { Field } from 'redux-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 import './filterform.scss';
 import { customInputField } from '../CustomFields';
-
-
 
 
 const PlacesFilterForm = props => {
@@ -24,7 +22,7 @@ const PlacesFilterForm = props => {
     'massage therapy', 'venues', 'jewellery', 'fashion']
 
   return (
-    <Fragment>
+   
     <div
       className='filter-form'>
       <div className='container'>
@@ -65,7 +63,7 @@ const PlacesFilterForm = props => {
             >
             <option value="all categories">All categories</option>
             {categories.map(categories => (
-              <option key={categories.id}>{categories.name}</option>
+              <option key={categories._id}>{categories.name}</option>
             )) }
           </Field>
         </form>
@@ -142,7 +140,7 @@ const PlacesFilterForm = props => {
         </div>
       </div>
     </div>
-    </Fragment>
+   
   )
 }
 
