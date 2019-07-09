@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
+import { formValueSelector, reduxForm } from 'redux-form';
 import { withRouter } from "react-router";
-import { formValueSelector } from 'redux-form'
 
 import PlacesFilterForm from '../../components/PlacesFilterForm';
 //import {getPlacesStart} from '../../store/actions';

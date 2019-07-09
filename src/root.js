@@ -9,6 +9,7 @@ function AppRouter() {
     return (
       <BrowserRouter>
         <Route path="/" exact component={HomePage} />
+
       </BrowserRouter>
     );
   }

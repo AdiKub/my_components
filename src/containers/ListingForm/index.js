@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 import ListingForm from '../../components/ListingForm';
-import { createListingStart } from '../../store/listing/actions';
+//import { createListingStart } from '../../store/listing/actions';
 import { createValidator, email, required } from '../../services/validations';
 
 import categories  from '../../db/categories.json';
@@ -33,7 +33,7 @@ const formConfig = {
 }
 
 const ListingFormContainer = (props) => <ListingForm {...props} />;
-const mapDispatchToProps = (dispatch) => ({
-    createListingStart: (formValues) => dispatch(createListingStart(formValues)),
-}) 
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(formConfig)(ListingFormContainer));
+// const mapDispatchToProps = (dispatch) => ({
+//     createListingStart: (formValues) => dispatch(createListingStart(formValues)),
+// }) 
+export default connect(mapStateToProps, null)(reduxForm(formConfig)(ListingFormContainer));
