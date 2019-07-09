@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Field } from 'redux-form';
-import GoogleMapReact from 'google-map-react';
+//import GoogleMapReact from 'google-map-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faFacebook, faWhatsapp, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faImage, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -12,31 +12,47 @@ import { richEditor } from '../CustomEditor'
 import './listingForm.scss'
 
 const ListingForm = (props) => {
-  const { handleSubmit, pristine, createListingStart, submitting } = props;
-
-  const [logoState, dropLogo] = useState(null);
-  const [galleryState, dropMainImage] = useState(null)
-  const [imageState, dropImages] = useState([]);
+  const { 
+    handleSubmit, 
+    pristine, 
+    createListingStart, 
+    cities,
+    categories,
+    submitting 
+  } = props;
   
+  const [mainImageState, dropMainImage] = useState(null)
+  const [imageState, dropImages] = useState([]);
+  const [coutryState, setCountry] = useState("5d133e543064d7033d43f958");
+
   const handleListingCreate = (formValues) => {
-    formValues.mainImage = logoState
-    formValues.images = imageState
-    formValues.galleryimage = galleryState
-    createListingStart(formValues)
+    formValues.country = coutryState
+    let newFormValues = new FormData();
+
+    mainImageState ? formValues.mainImage = mainImageState[0]: delete formValues.mainImage;
+    
+    imageState.length>0 ? 
+    imageState.map(img => newFormValues.append('images', img)) : 
+    delete formValues.images 
+    
+    Object.keys(formValues).map(key=>
+      newFormValues.append(key,  formValues[key])
+    )
+    createListingStart(newFormValues)
   }
-  //the handleDropImages add images to state dropImages from input for images
+  const onSetCity = (e) => {
+    setCountry(cities.find((city)=>e.target.value === city._id).countryId)
+  }
   const handleDropImages = (images) => dropImages(imageState.concat(...images));
-  //the deletImage delete images from state imageState
   const deletImage = (index) => dropImages(imageState.filter(img => img.name !== imageState[index].name));
-  //the socialsArray is array for creating social input
   const socialsArray = [faInstagram, faFacebook, faWhatsapp, faYoutube];
 
   return (
-    <form
+    <div
       onSubmit={handleSubmit(handleListingCreate)}
       className='listing'>
       <div className='container'>
-        <div className='listing-wrapper'>
+        <form className='listing-wrapper'>
 
           <div className='listing-location'>
             <div className='listing-location-forms'>
@@ -54,34 +70,36 @@ const ListingForm = (props) => {
                 <label className='listing-form__title'>listing categories</label>
                 <div >
                   <Field
-                    name="categoriesId"
-                    component={customInputField}
-                    autoComplete="on"
-                    className="listing-form__input"
-                    list="categoriesName" />
-                  <datalist id='categoriesName'>
-                    <option
+                    name="category"
+                    component="select"
+                    className="listing-form__input">
+                      <option > </option>
+                  {categories.map(category => <option
+                      key={category.name}
                       className='listing-form__input__select__value'
-                      value="hotel">hotel</option>
-                    <option
-                      className='listing-form__input__select__value'
-                      value="cafe">cafe</option>
-                    <option
-                      className='listing-form__input__select__value'
-                      value="restaurant">restaurant</option>
-                  </datalist>
+                      value={category._id}> 
+                      {category.name}
+                     </option>) }
+                  </Field>
+                  
                 </div>
               </div>
               <div className='listing-form'>
                 <label className='listing-form__title'>listing location</label>
                 <div >
-                  <Field
-                    className='listing-form__input '
-                    name="citiesId"
-                    component={customInputField}
-                    type="text"
-                    placeholder="Bishkek"
-                  />
+                <Field
+                    onChange={onSetCity}
+                    name="cities"
+                    component="select"
+                    className="listing-form__input">
+                  <option > </option>
+                  {cities.map(city => <option
+                      key={city.name}
+                      className='listing-form__input__select__value'
+                      value={city._id}> 
+                      {city.name}
+                     </option>) }
+                  </Field>
                 </div>
               </div>
               <div className='listing-form'>
@@ -163,72 +181,43 @@ const ListingForm = (props) => {
               </div>
             </div>
           </div>
+          
 
           <div className='listing-forms-wrapper'>
-            <label className='listing-form__title'>logo</label>
-            <Dropzone
-              multiple={false}
-              noClick={logoState ? true : false}
-              accept="image/*"
-              onDrop={(logoFile) => dropLogo(logoFile)}>
-              {({ getRootProps, getInputProps }) => (
-                <div
-                  className='listing-image-load listing-image-load__logo'
-                  {...getRootProps()}>
-                  <span
-                    onClick={() => dropLogo(null)}
-                    style={{ display: !logoState ? 'none' : 'flex' }}
-                    className='listing-image__logo__icon_delet'>
-                    <FontAwesomeIcon
-                      className='listing-image__files__icon_delet'
-                      icon={faTimes} />
-                  </span>
-                  <input
-                    className='listing__drop__input'
-                    name="mainImage"
-                    {...getInputProps()} />
-                  {logoState &&
-                    <img
-                      src={URL.createObjectURL(logoState[0])}
-                      alt='logo'
-                      className='listing-image__logo' />}
-                  <FontAwesomeIcon
-                    style={{ display: logoState ? 'none' : 'flex' }}
-                    className='listing-image__logo__icon'
-                    icon={faImage} />
-                </div>
-              )}
-            </Dropzone>
-
+                       
             <label className='listing-form__title'>main image</label>
-            <Dropzone
+
+            <Dropzone    
               multiple={false}
-              noClick={galleryState ? true : false}
+              noClick={mainImageState ? true : false}
               accept="image/*"
-              onDrop={(logoFile) => dropMainImage(logoFile)}>
+              onDrop={(file) => dropMainImage(file)}>
               {({ getRootProps, getInputProps }) => (
                 <div
                   className='listing-image-load listing-image-load__logo'
                   {...getRootProps()}>
                   <span
                     onClick={() => dropMainImage(null)}
-                    style={{ display: !galleryState ? 'none' : 'flex' }}
+                    style={{ display: !mainImageState ? 'none' : 'flex' }}
                     className='listing-image__logo__icon_delet'>
                     <FontAwesomeIcon
                       className='listing-image__files__icon_delet'
                       icon={faTimes} />
                   </span>
                   <input
+                    type="file"
+                    id='mainImage'
                     className='listing__drop__input'
-                    name="logoDrop"
+                    name="mainImage"
                     {...getInputProps()} />
-                  {galleryState &&
+                
+                  {mainImageState &&
                     <img
-                      src={URL.createObjectURL(galleryState[0])}
+                      src={URL.createObjectURL(mainImageState[0])}
                       alt='logo'
                       className='listing-image__logo' />}
                   <FontAwesomeIcon
-                    style={{ display: galleryState ? 'none' : 'flex' }}
+                    style={{ display: mainImageState ? 'none' : 'flex' }}
                     className='listing-image__logo__icon'
                     icon={faImage} />
                 </div>
@@ -399,10 +388,9 @@ const ListingForm = (props) => {
               Submit
           </button>
           </div>
-
-        </div>
+      </form>
       </div>
-    </form>
+    </div>
   )
 }
 

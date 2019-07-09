@@ -1,0 +1,59 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600|Varela+Round');
+
+
+.section-places { 
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.places-tags-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 42px;
+    flex-wrap: wrap;
+    align-items: center;
+    .places__tag {
+        font-weight: 600;
+        background: none; 
+        border: solid 1px $placeCardFontColor;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 15px;
+        margin-right: 50px;
+        font-size: 19px;
+        &_selected {
+            color: white;
+            background: linear-gradient(90deg, #5884e8 0%, #2cc7de 100%);
+        }
+        @media screen and (max-width: 768px) { 
+            padding: 5px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+    }
+    .places__tag:hover {
+        cursor: pointer;
+        color: white;
+        background: linear-gradient(90deg, #5884e8 0%, #2cc7de 100%);
+    }
+    
+}
+.place-cards-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @media screen and (max-width: 1200px) { 
+        max-width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    @media screen and (max-width: 1440px) { 
+        max-width: 100%;
+    } 
+}

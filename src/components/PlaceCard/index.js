@@ -1,5 +1,4 @@
 import { withRouter } from 'react-router'
-import { Fragment } from 'react'
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faMobileAlt, faGlobeAmericas, faStar, faHeart, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
@@ -11,7 +10,7 @@ const PlaceCard = props => {
   const { place, history } = props;
 
   const pushToDetail = () => {
-    history.push(`/detail/${place.id}`)
+    history.push(`/detail/${place._id}`)
   }
 
   const like = () => {

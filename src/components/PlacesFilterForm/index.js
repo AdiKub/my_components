@@ -1,54 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Field } from 'redux-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
-import PlaceCard from '../PlaceCard'
+
 import './filterform.scss';
 import { customInputField } from '../CustomFields';
-import useDebounce from '../customHooks/useDebounce';
+
+
 
 
 const PlacesFilterForm = props => {
-  const { changeFormValue, getPlacesStart, places, cities, myValues, categories, location } = props;
+  const {  categories } = props;
   
-  let params = new URLSearchParams(location.search)
+
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [distanceUnit, setUnit] = useState('km');
   const [distanceValue, setValue] = useState(10)
-
-  const reqLocation = params.get('location')
-  const keywords = params.get('keywords')
-  const category = params.get('category')
-  
-  const keywordsChanged = myValues.keywords === undefined ? '' : myValues.keywords === null ? '' : myValues.keywords
-  const locationChanged = myValues.location === undefined ? '' : myValues.location === null ? '' : myValues.location
-  const categoryChanged = myValues.categoriesForm 
-  
-  const checkCity = () => {
-    const currentLocation = locationChanged && locationChanged.charAt(0).toUpperCase() + locationChanged.slice(1)
-    const citiId = currentLocation === '' ? {id: 0} : cities.find(city => city.name === currentLocation ? city.id : null)
-    const categoryId = categoryChanged === null ? '' : categoryChanged === 'all categories' ? '' : 
-    categories.find(category => category.name === categoryChanged ? category.id : '')
-    
-    const idOfCategory = categoryChanged === null ? '' : categoryChanged === 'all categories' ? '' : `&categoriesId=${categoryId && categoryId.id}`
-    const idOfCity = !citiId ? 'citiesId=10' : citiId.id === 0 ? '' : citiId === '' ? '' : `citiesId=${citiId && citiId.id}`
-    getPlacesStart(`isOPen=true&_limit=12&${idOfCity}&q=${keywordsChanged}${idOfCategory}`)
-  }
-  const debouncedSearchTerm = useDebounce(myValues, 500);
-
-  useEffect(() => {
-    if (debouncedSearchTerm) {
-      checkCity()
-    }
-  }, [debouncedSearchTerm]);
-
-  useEffect(() => {
-    changeFormValue('keywords', keywords)
-    changeFormValue('location', reqLocation)
-    changeFormValue('categoriesForm', category)
-  }, [])
-  
 
   const tagsName = ['shop', 'hotel', 'restaurant', 'kid', 'pizza',
     'coffe', 'ckin care', 'spa', 'parking street',
@@ -56,6 +24,7 @@ const PlacesFilterForm = props => {
     'massage therapy', 'venues', 'jewellery', 'fashion']
 
   return (
+    <Fragment>
     <div
       className='filter-form'>
       <div className='container'>
@@ -151,7 +120,7 @@ const PlacesFilterForm = props => {
               className='filter-form-checkboxs__title__icon'
               icon={isFilterOpen ? faAngleUp : faAngleDown} />
           </p>
-          {isFilterOpen && (
+       
             <div
               className='filter-form-checkboxs__wrapper'>
               {tagsName.map(key => {
@@ -169,21 +138,11 @@ const PlacesFilterForm = props => {
                   </div>)
               })}
             </div>
-          )}
-        <div
-          className='place-cards-wrapper'>
-          {places.places.map(placeObj => {
-            return (
-              <PlaceCard
-                key={placeObj.id}
-                place={placeObj}
-              />
-            )
-          })}
-        </div>
+         
         </div>
       </div>
     </div>
+    </Fragment>
   )
 }
 
