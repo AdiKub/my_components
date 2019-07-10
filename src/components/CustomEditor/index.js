@@ -3,6 +3,9 @@ import {Editor, EditorState, RichUtils, getDefaultKeyBinding, convertFromHTML, c
 import   draftToHtml  from 'draftjs-to-html';
 import './style.scss'
 
+//
+// this codes copied from official website
+//
 export class richEditor extends React.Component {
   constructor(props) {
     

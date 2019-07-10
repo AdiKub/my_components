@@ -7,27 +7,19 @@ import { faUser, faFolder, faComments, faArrowRight } from '@fortawesome/free-so
 import './article.scss'
 
 const Article = (props) => {
-
   const { articlePaginate, history } = props;
-
   const pushToDetailArticle = () => {
     history.push(`/article/${articlePaginate._id}`)
   }
-
-
   return (
-    <div className='article' 
-    onClick={pushToDetailArticle}
-    >
-      <div 
-      className='article-img-wrapper' >
+    <div className='article'
+      onClick={pushToDetailArticle}>
+      <div className='article-img-wrapper' >
         <div className='article-img__date'>
-          <h3
-            className='article-img__date__day'>
+          <h3 className='article-img__date__day'>
             {moment(articlePaginate.createdDate).format('DD')}
           </h3>
-          <p
-            className='article-img__date__month'>
+          <p className='article-img__date__month'>
             {moment(articlePaginate.createdDate).format('MMM')}
           </p>
         </div>
@@ -66,11 +58,10 @@ const Article = (props) => {
             </span>
           </div>
         </div>
-        <span className='article-description__text' 
-        dangerouslySetInnerHTML={{ __html:articlePaginate.extraDescription}}/>
+        <span className='article-description__text'
+          dangerouslySetInnerHTML={{ __html: articlePaginate.extraDescription }} />
         <button className='article-description__button'
-        onClick={pushToDetailArticle}
-        >
+          onClick={pushToDetailArticle}>
           read more
           <FontAwesomeIcon
             className='article-description__button__arrow'
@@ -78,7 +69,6 @@ const Article = (props) => {
         </button>
       </div>
     </div>
-  )
-}
+)}
 
 export default withRouter(Article);

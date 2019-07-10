@@ -6,11 +6,8 @@ import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 import './filterform.scss';
 import { customInputField } from '../CustomFields';
 
-
 const PlacesFilterForm = props => {
-  const {  categories } = props;
-  
-
+  const { categories } = props;
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [distanceUnit, setUnit] = useState('km');
@@ -20,22 +17,19 @@ const PlacesFilterForm = props => {
     'coffe', 'ckin care', 'spa', 'parking street',
     'outdoor seating', 'wireless internet', 'park',
     'massage therapy', 'venues', 'jewellery', 'fashion']
-
   return (
-   
     <div
       className='filter-form'>
       <div className='container'>
-
         <form className='filter-form-wrapper'>
-          <Field 
+          <Field
             placeholder='Keywords'
             className='filter-form__input keywords__input'
             type="text"
             name="keywords"
             component={customInputField}
           />
-          <Field 
+          <Field
             placeholder='Location'
             className='filter-form__input'
             type="text"
@@ -60,11 +54,11 @@ const PlacesFilterForm = props => {
             className='filter-form__select'
             component="select"
             name="categoriesForm"
-            >
+          >
             <option value="all categories">All categories</option>
             {categories.map(categories => (
               <option key={categories._id}>{categories.name}</option>
-            )) }
+            ))}
           </Field>
         </form>
         <div className='filter-form-radius'>
@@ -89,19 +83,19 @@ const PlacesFilterForm = props => {
           <div
             className='filter-form-radius-distance'>
             <div
-              style={{ width: distanceValue - 1 + '%' }}
+              style={{ width: distanceValue + '%' }}
               className='filter-form-radius-distance__select__line' />
             <div className='filter-form-radius-distance__static__line' />
             <div className='filter-form-radius-distance__radio'>
-              <p
-                style={{ left: distanceValue - 1.7 + '%' }}
-                className='filter-form-radius-distance__radio__point' />
               {[1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map(key => (
                 <div
                   key={key}
                   id={key}
                   onClick={(event) => setValue(event.target.id)}
-                  className='filter-form-radius-distance__radio__part'>
+                  className={key <= distanceValue ? 
+                    'filter-form-radius-distance__radio__part-active' :
+                    'filter-form-radius-distance__radio__part'
+                    }>
                 </div>
               ))}
             </div>
@@ -118,29 +112,27 @@ const PlacesFilterForm = props => {
               className='filter-form-checkboxs__title__icon'
               icon={isFilterOpen ? faAngleUp : faAngleDown} />
           </p>
-       
-            <div
-              className='filter-form-checkboxs__wrapper'>
-              {tagsName.map(key => {
-                return (
-                  <div
-                    key={key}
-                    className='filter-form__checkbox'>
-                    <input
-                      className='filter-form__checkbox__input'
-                      type="checkbox" />
-                    <span
-                      className='filter-form__checkbox__text'>
-                      {key}
-                    </span>
-                  </div>)
-              })}
-            </div>
-         
+          <div
+            className='filter-form-checkboxs__wrapper'>
+            {tagsName.map(key => {
+              return (
+                <div
+                  key={key}
+                  className='filter-form__checkbox'>
+                  <input
+                    className='filter-form__checkbox__input'
+                    type="checkbox" />
+                  <span
+                    className='filter-form__checkbox__text'>
+                    {key}
+                  </span>
+                </div>)
+            })}
+          </div>
         </div>
       </div>
     </div>
-   
+
   )
 }
 

@@ -116,10 +116,23 @@
                 }
 
                 &__part {
+                    background-color: white;
+                    border: 2px solid gray;
                     height: 13px;
-                    width: 100%;
-                    opacity: 0;
+                    width: 13px;
+                    border-radius: 20%;
+                    transition: 500ms;
+
+                    &-active {
+                        transition: 500ms;
+                        border-radius: 20%;
+                        height: 13px;
+                        width: 13px;
+                        background-color: #8ca3f6;
+                        border: none;
+                    }
                 }
+
                 :hover {
                     cursor: pointer;
                 }

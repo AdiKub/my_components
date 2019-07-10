@@ -5,12 +5,10 @@ import { faSearch, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 import './articleAside.scss'
 
-
 const ArticleAside = (props) => {
   const { articlePaginate } = props;
   return (
     <aside className='article-aside'>
-
       <label className='article-aside__label'>
         <input
           className='article-aside__input article-aside__input_curve_radius '
@@ -27,26 +25,14 @@ const ArticleAside = (props) => {
           </h3>
         </div>
         <ul className='article-aside-box__list'>
-          <a
-            href="/"
-            className='article-aside-box__link'>
-            Кафе
+          {['Кафе', 'Новости', 'Советы и хитрости', 'Безкатегории'].map(tag => (
+            <a
+              key={tag}
+              href="/"
+              className='article-aside-box__link'>
+              {tag}
             </a>
-          <a
-            href="/"
-            className='article-aside-box__link'>
-            Новости
-            </a>
-          <a
-            href="/"
-            className='article-aside-box__link'>
-            Советы и хитрости
-            </a>
-          <a
-            href="/"
-            className='article-aside-box__link'>
-            Безкатегории
-            </a>
+          ))}
         </ul>
       </div>
       <div className='article-aside-box'>
@@ -71,7 +57,7 @@ const ArticleAside = (props) => {
 
                 </h4>
                 <span className='article-aside-box__news__description__date'>
-                {moment(articlePaginate.createdDate).format("MMM Do YY")}
+                  {moment(articlePaginate.createdDate).format("MMM Do YY")}
                 </span>
               </div>
             </div>

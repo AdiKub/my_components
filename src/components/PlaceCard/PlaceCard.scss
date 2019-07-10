@@ -14,19 +14,20 @@
         cursor: pointer;
     }
    
-    @media screen and (max-width: 576px) { 
-        max-width: 300px;
+    @media screen and (max-width: 1439px) {
+        max-width: 260px;
     }
-    @media screen and (max-width: 768px) { 
-        max-width: 300px;
+    @media screen and (max-width: 1199px) {
+      max-width: 330px;
     }
-    @media screen and (max-width: 992px) { 
-        max-width: 300px;
-        .place-card-avatar-wrapper {
-            position: absolute;
-            left: 220px;
-            top: 190px;
-        }
+    @media screen and (max-width: 991px) {
+      max-width: 300px; 
+    }
+    @media screen and (max-width: 767px) {
+      max-width: 250px;
+    }
+    @media  screen and (max-width: 575px) {
+      max-width: 330px;
     }
 }
 .place-card {
@@ -66,6 +67,21 @@
             object-fit: cover;
             border-radius: 50%;
             }
+        @media screen and (max-width: 1439px) {
+            left: 180px;
+        }
+        @media screen and (max-width: 1199px) {
+            left: 250px;
+        }
+        @media screen and (max-width: 991px) {
+            left: 220px;
+        }
+        @media screen and (max-width: 767px) {
+            left: 180px;
+        }
+        @media  screen and (max-width: 575px) {
+            left: 250px;
+        }
     }
     &__name{
         font-size: 0.97em;
@@ -99,6 +115,19 @@
             width: 50px;
             height: 100%;
             @include displayFlexOnCenter;
+            @media screen and (max-width: 1439px) {
+                width: 45px;
+            }
+            @media screen and (max-width: 1199px) {
+                width: 50px;
+            }
+            @media screen and (max-width: 767px) {
+                width: 43px;
+            }
+            @media screen and (max-width: 575px) {
+                width: 50px;
+            }
+           
             &:hover {
                 cursor: pointer;
             }
@@ -111,6 +140,21 @@
         .place-card__button_detail {
             width: 160px;
             font-size: 1em;
+            @media screen and (max-width: 1439px) {
+                width: 100px;
+            }
+            @media screen and (max-width: 1199px) {
+                width: 160px;
+            }
+            @media screen and (max-width: 991px) {
+                width: 130px;
+            }
+            @media screen and (max-width: 767px) {
+                width: 100px;
+            }
+            @media screen and (max-width: 575px) {
+                width: 160px;
+            }
         }
     }
 }

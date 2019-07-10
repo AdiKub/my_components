@@ -1,2 +1,0 @@
-export const FIRST_INDEX_OF_ARRAY = 0;
-export const HTTP_INTERNAL_SERVER_ERROR_CODE = 500;

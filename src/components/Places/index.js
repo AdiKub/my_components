@@ -4,62 +4,36 @@ import SectionTitle from '../SectionTitle';
 import './places.scss'
 
 const Places = props => {
-
-  const { places } = props;
-  
- 
+  const { places, categories } = props;
 
     return (
-    <section className='section-places'>
+    <div className='places'>
       <div className='container' >
         <SectionTitle
           name="Popular Thing To Do"
-          text="popular exclusive listings in our directory"
-        />
+          text="popular exclusive listings in our directory"/>
         <div className='places-tags-wrapper'>
-          <button
+          {categories.map(tag=>(
+            <button
+            key={tag.name}
             className='places__tag'
-            id='all'>
-            All
+            id={tag.name}>
+            {tag.name}
           </button>
-          <button
-            className='places__tag'>
-            Hotel
-          </button>
-          <button
-            className='places__tag'>
-            Restaurant
-          </button>
-          <button
-            className='places__tag'> 
-            Cafe
-          </button>
-          <button
-            className='places__tag'>
-            Night Club
-          </button>
-          <button
-           className='places__tag'>
-            Guest House
-          </button>
-          <button
-            className='places__tag'>
-            Hostel
-          </button>
+          ))}
         </div>
         <div
-          className='place-cards-wrapper'>
+          className='places-cards-wrapper'>
           {places.slice(0, 8).map(placeObj => {
             return (
               <PlaceCard
                 key={placeObj._id}
-                place={placeObj}
-              />
+                place={placeObj}/>
             )
           })}
         </div>
       </div>
-    </section>
+    </div>
   )
 }
 

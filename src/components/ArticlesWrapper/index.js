@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,8 +8,6 @@ import './articlesWrapper.scss';
 
 const ArticlesWrapper = (props) => {
   const {  articlePaginate } = props;
-  const firstPage = 1;
-  const [Initialpage, setPageClicked] = useState(firstPage);
 
   return (
     <div className='articles-wrapper'>
@@ -17,25 +15,21 @@ const ArticlesWrapper = (props) => {
         <div className='articles-wrapper-main-content'>
           <div className='articles-wrapper-list'>
             {articlePaginate.slice(0, 3).map(articlePaginate => (
-              <Article articlePaginate={articlePaginate}
-                key={articlePaginate._id}
-              />
+              <Article 
+                articlePaginate={articlePaginate}
+                key={articlePaginate._id}/>
             ))}
             <div className="pages-numbers">
               {[1, 2, 3, 4, 5, 6, 7].map(page => (
                 <button
                   key={page}
                   value={page}
-                  className="pages-numbers__button"
-                  onClick={event => setPageClicked(event.target.value)}
-                >
+                  className="pages-numbers__button">
                   {page}
                 </button>
               ))}
               <button
-                className="pages-numbers__button"
-                onClick={() => setPageClicked(Initialpage - (-1))}
-              >
+                className="pages-numbers__button">
                 Next
                 <FontAwesomeIcon
                   className='pages-numbers__button__icon'
@@ -49,7 +43,6 @@ const ArticlesWrapper = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+)}
 
 export default ArticlesWrapper;

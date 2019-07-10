@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Field } from 'redux-form';
 //import GoogleMapReact from 'google-map-react';
@@ -12,15 +11,15 @@ import { richEditor } from '../CustomEditor'
 import './listingForm.scss'
 
 const ListingForm = (props) => {
-  const { 
-    handleSubmit, 
-    pristine, 
-    createListingStart, 
+  const {
+    handleSubmit,
+    pristine,
+    createListingStart,
     cities,
     categories,
-    submitting 
+    submitting
   } = props;
-  
+
   const [mainImageState, dropMainImage] = useState(null)
   const [imageState, dropImages] = useState([]);
   const [coutryState, setCountry] = useState("5d133e543064d7033d43f958");
@@ -29,19 +28,19 @@ const ListingForm = (props) => {
     formValues.country = coutryState
     let newFormValues = new FormData();
 
-    mainImageState ? formValues.mainImage = mainImageState[0]: delete formValues.mainImage;
-    
-    imageState.length>0 ? 
-    imageState.map(img => newFormValues.append('images', img)) : 
-    delete formValues.images 
-    
-    Object.keys(formValues).map(key=>
-      newFormValues.append(key,  formValues[key])
+    mainImageState ? formValues.mainImage = mainImageState[0] : delete formValues.mainImage;
+
+    imageState.length > 0 ?
+      imageState.map(img => newFormValues.append('images', img)) :
+      delete formValues.images
+
+    Object.keys(formValues).map(key =>
+      newFormValues.append(key, formValues[key])
     )
     createListingStart(newFormValues)
   }
   const onSetCity = (e) => {
-    setCountry(cities.find((city)=>e.target.value === city._id).countryId)
+    setCountry(cities.find((city) => e.target.value === city._id).countryId)
   }
   const handleDropImages = (images) => dropImages(imageState.concat(...images));
   const deletImage = (index) => dropImages(imageState.filter(img => img.name !== imageState[index].name));
@@ -73,32 +72,32 @@ const ListingForm = (props) => {
                     name="category"
                     component="select"
                     className="listing-form__input">
-                      <option > </option>
-                  {categories.map(category => <option
+                    <option > </option>
+                    {categories.map(category => <option
                       key={category.name}
                       className='listing-form__input__select__value'
-                      value={category._id}> 
+                      value={category._id}>
                       {category.name}
-                     </option>) }
+                    </option>)}
                   </Field>
-                  
+
                 </div>
               </div>
               <div className='listing-form'>
                 <label className='listing-form__title'>listing location</label>
                 <div >
-                <Field
+                  <Field
                     onChange={onSetCity}
                     name="cities"
                     component="select"
                     className="listing-form__input">
-                  <option > </option>
-                  {cities.map(city => <option
+                    <option > </option>
+                    {cities.map(city => <option
                       key={city.name}
                       className='listing-form__input__select__value'
-                      value={city._id}> 
+                      value={city._id}>
                       {city.name}
-                     </option>) }
+                    </option>)}
                   </Field>
                 </div>
               </div>
@@ -181,13 +180,10 @@ const ListingForm = (props) => {
               </div>
             </div>
           </div>
-          
 
           <div className='listing-forms-wrapper'>
-                       
             <label className='listing-form__title'>main image</label>
-
-            <Dropzone    
+            <Dropzone
               multiple={false}
               noClick={mainImageState ? true : false}
               accept="image/*"
@@ -210,7 +206,7 @@ const ListingForm = (props) => {
                     className='listing__drop__input'
                     name="mainImage"
                     {...getInputProps()} />
-                
+
                   {mainImageState &&
                     <img
                       src={URL.createObjectURL(mainImageState[0])}
@@ -278,7 +274,7 @@ const ListingForm = (props) => {
               <Field
                 className='listing-content__wysiwyg listing-content__wysiwyg'
                 name="description"
-                component={richEditor}  />
+                component={richEditor} />
             </div>
           </div>
 
@@ -388,7 +384,7 @@ const ListingForm = (props) => {
               Submit
           </button>
           </div>
-      </form>
+        </form>
       </div>
     </div>
   )

@@ -7,10 +7,6 @@ import ArticlesContainer from '../containers/Articles';
 import DetailPostTopContainer from '../containers/DetailPostTop'
 import "../assets/styles/main.scss";
 
-
-
-
-
 function Home() {
   return (
     <Fragment>
@@ -18,13 +14,13 @@ function Home() {
       <PlacesContainer />
       <ArticlesContainer />
       <PagesTopTitle 
-        title='Add Listing'
-        link={['HOME', 'add listing']}/>
-      <ListingFormContainer />
-      <PagesTopTitle 
         title='Search'
         link={['HOME', 'search']}/>
       <PlacesFilterFormContainer />
+      <PagesTopTitle 
+        title='Add Listing'
+        link={['HOME', 'add listing']}/>
+      <ListingFormContainer />
     </Fragment>
   )
 }
